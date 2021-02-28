@@ -1,0 +1,41 @@
+{
+  "name": "react-game-backend",
+  "version": "1.2.0",
+  "description": "backend",
+  "main": "build",
+  "author": "Antonina Tregubova",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "start": "MONGO_URL=mongodb+srv://devuser:qwerty123@cluster0.n3gup.mongodb.net/dev2048 node ./build",
+    "dev": "npm run start-db && cross-env NODE_ENV=development npm run dev:clean && nodemon -w src -e ts --exec \"npm run dev:build && npm run dev:start\"",
+    "start-db": "docker-compose -f scripts/mongodb.compose.yml up -d",
+    "prettier": "prettier --loglevel warn --write \"src/**/*.{ts,tsx}\"",
+    "lint": "tslint --fix -c tslint.json -t stylish -p ./tsconfig.json",
+    "dev:clean": "rimraf build",
+    "dev:build": "tsc --incremental -p tsconfig.json",
+    "dev:start": "MONGO_URL=mongodb://Antonina:102030@127.0.0.1/dev2048 node --inspect -r source-map-support/register -r dotenv/config build/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv-defaults": "^2.0.1",
+    "express": "^4.17.1",
+    "make-promises-safe": "^5.1.0",
+    "mongoose": "^5.11.11"
+  },
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.9",
+    "@types/mongoose": "^5.10.3",
+    "@types/node": "^13.13.4",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "~1.18.0",
+    "typescript": "^3.8.3"
+  }
+}
