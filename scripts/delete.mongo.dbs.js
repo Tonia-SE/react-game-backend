@@ -1,6 +1,0 @@
-db = db.getSiblingDB('dev2048')
-db.users.drop()
-db.cards.drop()
-db.orders.drop()
-db.wishes.drop()
-db.categories.drop()

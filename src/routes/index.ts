@@ -18,5 +18,5 @@ root.get('/', async (req: express.Request, res: express.Response, next: express.
 export const routes: Array<IRoute> = [
   { endpoint: '/', router: root },
   { endpoint: '/auth', router: authRouter },
-  { endpoint: '/results', router: resultsRouter}
+  { endpoint: '/results', router: resultsRouter },
 ]

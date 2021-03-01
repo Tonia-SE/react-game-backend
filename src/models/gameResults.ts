@@ -11,7 +11,7 @@ export const GameResultsSchema: Schema = new Schema({
   user: { type: String, required: true },
   seconds: { type: Number, required: true },
   minutes: { type: Number, required: true },
-  score: { type: Number, required: true }
+  score: { type: Number, required: true },
 })
 
 export const GameResult = mongoose.model<IGameResult>('game_result', GameResultsSchema)

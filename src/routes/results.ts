@@ -35,12 +35,22 @@ resultsRouter.post(
 
 resultsRouter.get(
   '/',
-  async (req: express.Request, res: express.Response, next: express.NextFunction) => {    
+  async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    let filter = {}
+    const filter = {}
     const orders = await GameResult.find(filter)
+
+    orders.sort(function (a, b) {
+      if (b.score > a.score) {
+        return 1
+      } else if (b.score === a.score) {
+        return 0
+      }
+      return -1
+    })
+
     res.status(200)
-    res.json(orders)
+    res.json(orders.slice(0, 10))
   },
 )
